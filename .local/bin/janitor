@@ -32,7 +32,7 @@ rules[default]=~/Documents/Quarantine
 tracking_dir=~/Downloads
 
 # Define the break interval to track new files (seconds)
-break_time=30
+break_time=600
 
 # Outputs the mime-type of a file received from input
 mime_type() {
