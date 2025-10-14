@@ -8,10 +8,15 @@ local palettes   = require 'widgets.palettes'
 
 local self       = {}
 
+local function onClick(_)
+    commands.cpu_governor_menu()
+end
+
 function self:new()
     return button {
         color = palettes.cpu,
         icon = assets.icons.cpu,
+        onClick = onClick,
         onInit = function(btn)
             foundation.schedule {
                 timeout = 5,

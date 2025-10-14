@@ -66,6 +66,12 @@ local function bluetooth_connected(cb, opt)
     return command_or_stream(home_path .. "/.local/bin/rofi-bluetooth-menu --query-power", cb, opt)
 end
 
+--- Launches cpu governor menu.
+---@param cb? function
+local function cpu_governor_menu(cb, opt)
+    return command_or_stream(home_path .. "/.local/bin/rofi-cpu-governor-menu", cb, opt)
+end
+
 --- Queries CPU temperature.
 ---@param cb? function
 local function cpu_temp(cb, opt)
@@ -155,6 +161,7 @@ return {
     stream = stream,
     bluetooth_menu = bluetooth_menu,
     bluetooth_connected = bluetooth_connected,
+    cpu_governor_menu = cpu_governor_menu,
     cpu_temp = cpu_temp,
     cpu_usage = cpu_usage,
     janitor = janitor,

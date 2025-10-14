@@ -8,6 +8,8 @@ return {
         calendar = home_path .. "/.config/awesome/assets/icons/calendar.svg",
         cpu = home_path .. "/.config/awesome/assets/icons/cpu.svg",
         home = home_path .. "/.config/awesome/assets/icons/icon.svg",
+        network = home_path .. "/.config/awesome/assets/icons/network.svg",
+        network_slash = home_path .. "/.config/awesome/assets/icons/network-slash.svg",
         plug_charging = home_path .. "/.config/awesome/assets/icons/plug-charging.svg",
         plug = home_path .. "/.config/awesome/assets/icons/plug.svg",
         power = home_path .. "/.config/awesome/assets/icons/power.svg",
