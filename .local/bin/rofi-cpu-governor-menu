@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+# Get available governors from the first CPU (they're usually the same for all)
+governors=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors 2>/dev/null)
+current=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor 2>/dev/null)
+
+update_cpu_governor() {
+    governor="$1"
+    if [ "$current" == "$governor" ]; then
+        exit 0
+    fi
+    
+    if [ -t 0 ]; then
+        sudo cpufreq-set -g "$governor"
+        exit $?
+    fi
+
+    if [ -z "$SUDO_ASKPASS" ]; then
+        source ~/.profile
+    fi
+
+    sudo -A cpufreq-set -g "$governor"
+    exit $?
+}
+
+# If we can’t read governors, exit gracefully
+if [[ -z "$governors" ]]; then
+    rofi -e "Unable to read available governors (check permissions or cpufreq driver)"
+    exit 1
+fi
+
+chosen=$(printf "%s\n" $governors | rofi -dmenu -window-title "CPU Governor (current: $current)")
+case "$chosen" in
+"") exit 0;;
+*) update_cpu_governor "$chosen"; exit 0;;
+esac
