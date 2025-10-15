@@ -1,0 +1,82 @@
+server:
+  port: ${PORT}
+
+pages:
+  - name: Dashboard
+    # Optionally, if you only have a single page you can hide the desktop navigation for a cleaner look
+    hide-desktop-navigation: true
+    columns:
+      - size: small
+        widgets:
+          - type: calendar
+            first-day-of-week: monday
+
+          - type: rss
+            limit: 10
+            collapse-after: 3
+            cache: 12h
+            feeds:
+              - url: https://www.rtp.pt/noticias/rss
+                title: Notícias
+                limit: 5
+
+      - size: full
+        widgets:
+          - type: group
+            widgets:
+              - type: hacker-news
+              - type: lobsters
+              - type: reddit
+                subreddit: worldnews
+                show-thumbnails: true
+              - type: reddit
+                subreddit: CasualPT
+                show-thumbnails: true
+              - type: reddit
+                subreddit: golang
+                show-thumbnails: true
+              - type: reddit
+                subreddit: androiddev
+                show-thumbnails: true
+              - type: reddit
+                subreddit: iOSProgramming
+                show-thumbnails: true
+
+      - size: small
+        widgets:
+          - type: weather
+            location: Porto, Portugal
+            units: metric # alternatively "imperial"
+            hour-format: 24h # alternatively "24h"
+            # Optionally hide the location from being displayed in the widget
+            # hide-location: true
+          - $include: uptime-kuma.yml
+          - type: markets
+            markets:
+              - symbol: SPY
+                name: S&P 500
+                chart-link: https://www.tradingview.com/chart/?symbol=INDEX:BTCUSD
+              - symbol: NVDA
+                name: NVIDIA
+              - symbol: AAPL
+                symbol-link: https://www.google.com/search?tbm=nws&q=apple
+                name: Apple
+              - symbol: GOOG
+                name: Google
+              - symbol: BTC-USD
+                name: Bitcoin
+
+  # Add more pages here:
+  # - name: Your page name
+  #   columns:
+  #     - size: small
+  #       widgets:
+  #         # Add widgets here
+
+  #     - size: full
+  #       widgets:
+  #         # Add widgets here
+
+  #     - size: small
+  #       widgets:
+  #         # Add widgets here
