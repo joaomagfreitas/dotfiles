@@ -51,6 +51,7 @@ pages:
             # Optionally hide the location from being displayed in the widget
             # hide-location: true
           - $include: uptime-kuma.yml
+          - $include: gas-prices.yml
           - type: markets
             markets:
               - symbol: SPY

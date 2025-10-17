@@ -1,0 +1,32 @@
+- type: custom-api
+  title: Gas prices
+  url: https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/PesquisarPostos?idsTiposComb=3201&idMarca=&idTipoPosto=&idDistrito=13&idsMunicipios=196&qtdPorPagina=50&pagina=1
+  allow-insecure: true
+  cache: 12h
+  template: |
+    {{ if not (.JSON.Exists "resultado") }}
+    <p class="color-negative">Error reading response</p>
+    {{ else if eq (len (.JSON.Array "resultado")) 0 }}
+    <p>No data found</p>
+    {{ else }}
+
+    <ul class="dynamic-columns list-gap-8">
+    {{ $max := 5 }}
+    {{ range $i, $item := .JSON.Array "resultado" }}
+      {{ if lt $i $max }}
+        {{ $name := $item.String "Nome" }}
+        {{ $price := $item.String "Preco" }}
+        {{ $lat := $item.Float "Latitude" }}
+        {{ $long := $item.Float "Longitude" }}
+
+        <div class="flex items-center gap-12">
+          <a class="size-title-dynamic color-highlight text-truncate block grow"
+            href="https://www.google.com/maps/@{{ $lat }},{{ $long }},690m"
+            target="_blank" rel="noreferrer">
+            {{ $name }} ({{ $price }})
+          </a>
+        </div>
+      {{ end }}
+    {{ end }}
+    </ul>
+    {{ end }}
