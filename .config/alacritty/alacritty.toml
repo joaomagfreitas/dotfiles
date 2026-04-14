@@ -19,3 +19,12 @@ normal = { family = "JetBrains Mono Nerd Font", style = "Regular" }
 program = "/bin/bash"
 args = ["-l"]
 
+[[keyboard.bindings]]
+key = "Q"
+mods = "Control"
+action = "Quit"
+
+[[keyboard.bindings]]
+key = "C"
+mods = "Super|Shift"
+action = "Quit"

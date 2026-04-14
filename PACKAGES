@@ -1,5 +1,11 @@
 # A list of all packages that I'm using
 
+keepass2;
+xdotool;
+x11...
+7zip;
+tree;
+
 xclip; copy screenshot images to clipboard
 scrot; make screenshots happen
 fastfetch; better version of neofetch, showcase in terminal
